@@ -42,3 +42,7 @@ This is a Vue 3 + Vite project using:
 - No linting/formatting tools configured (consider adding ESLint/Prettier)
 - CSS uses scoped styles in components and global styles in `src/assets/`
 - Vue DevTools plugin is included for debugging
+
+## Documentation
+
+- Application flow and sequence diagrams: See [@/sequence.md](sequence.md)
