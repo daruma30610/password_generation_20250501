@@ -9,6 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 npm run dev      # Start development server with HMR
 npm run build    # Build for production
 npm run preview  # Preview production build locally
+npm run deploy   # Build and deploy to GitHub Pages
 ```
 
 ### Initial Setup
