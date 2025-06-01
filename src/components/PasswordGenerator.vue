@@ -62,60 +62,25 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from 'vue'
+import { onMounted } from 'vue'
+import { storeToRefs } from 'pinia'
+import { usePasswordGeneratorStore } from '@/stores/passwordGenerator'
 
-const password = ref('')
-const length = ref(16)
-const includeUppercase = ref(true)
-const includeLowercase = ref(true)
-const includeNumbers = ref(true)
-const includeSymbols = ref(false)
-const isCopied = ref(false)
+const passwordGeneratorStore = usePasswordGeneratorStore()
 
-const generatePassword = () => {
-  let charset = ''
-  
-  if (includeUppercase.value) charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  if (includeLowercase.value) charset += 'abcdefghijklmnopqrstuvwxyz'
-  if (includeNumbers.value) charset += '0123456789'
-  if (includeSymbols.value) charset += '!@#$%^&*()_+-=[]{}|;:,.<>?'
-  
-  if (charset === '') {
-    alert('少なくとも1つの文字種を選択してください')
-    return
-  }
-  
-  let newPassword = ''
-  const array = new Uint32Array(length.value)
-  crypto.getRandomValues(array)
-  
-  for (let i = 0; i < length.value; i++) {
-    newPassword += charset[array[i] % charset.length]
-  }
-  
-  password.value = newPassword
-  isCopied.value = false
-}
+// Use storeToRefs to maintain reactivity
+const { 
+  password, 
+  length, 
+  includeUppercase, 
+  includeLowercase, 
+  includeNumbers, 
+  includeSymbols, 
+  isCopied 
+} = storeToRefs(passwordGeneratorStore)
 
-const copyPassword = async () => {
-  if (!password.value) return
-  
-  try {
-    await navigator.clipboard.writeText(password.value)
-    isCopied.value = true
-    setTimeout(() => {
-      isCopied.value = false
-    }, 2000)
-  } catch (err) {
-    alert('コピーに失敗しました')
-  }
-}
-
-watch([length, includeUppercase, includeLowercase, includeNumbers, includeSymbols], () => {
-  if (password.value) {
-    generatePassword()
-  }
-})
+// Actions from store
+const { generatePassword, copyPassword } = passwordGeneratorStore
 
 onMounted(() => {
   generatePassword()
