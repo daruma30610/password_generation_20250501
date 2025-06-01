@@ -1,3 +1,7 @@
+<script setup>
+import { RouterLink } from 'vue-router'
+</script>
+
 <template>
   <div class="about">
     <div class="container">
@@ -67,6 +71,10 @@
           </details>
         </div>
       </section>
+      
+      <div class="link-container">
+        <RouterLink to="/" class="home-link">パスワード生成に戻る</RouterLink>
+      </div>
     </div>
   </div>
 </template>
@@ -168,6 +176,29 @@ details p {
 
 p {
   color: #2c3e50;
+}
+
+.link-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.home-link {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background-color: #42b883;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  transition: background-color 0.3s;
+}
+
+.home-link:hover {
+  background-color: #35a372;
 }
 
 @media (max-width: 640px) {

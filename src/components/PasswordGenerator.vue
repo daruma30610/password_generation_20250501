@@ -14,7 +14,7 @@
     </div>
 
     <div class="options">
-      <div class="option">
+      <div class="option length-option">
         <label for="length">文字数: {{ length }}</label>
         <input 
           type="range" 
@@ -126,10 +126,6 @@ onMounted(() => {
 .password-generator {
   max-width: 500px;
   margin: 0 auto;
-  padding: 2rem;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 }
 
 .password-display {
@@ -172,6 +168,8 @@ onMounted(() => {
 
 .option {
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
 }
 
 .option label {
@@ -190,9 +188,18 @@ onMounted(() => {
   cursor: pointer;
 }
 
+.length-option {
+  flex-direction: column;
+  align-items: center;
+}
+
+.length-option label {
+  margin-bottom: 0.5rem;
+}
+
 .slider {
-  width: 100%;
-  margin-top: 0.5rem;
+  width: 80%;
+  max-width: 300px;
 }
 
 .generate-button {
@@ -212,10 +219,6 @@ onMounted(() => {
 }
 
 @media (max-width: 640px) {
-  .password-generator {
-    padding: 1rem;
-  }
-  
   .password-input {
     font-size: 1rem;
   }
