@@ -45,4 +45,4 @@ This is a Vue 3 + Vite project using:
 
 ## Documentation
 
-- Application flow and sequence diagrams: See [@/sequence.md](sequence.md)
+- Application flow and sequence diagrams: See [@/docs/sequence.md](docs/sequence.md)
